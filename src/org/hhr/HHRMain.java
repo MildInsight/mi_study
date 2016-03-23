@@ -15,8 +15,8 @@ public class HHRMain {
 		List<UserVO> datas = (List<UserVO>)selectData.get("getData");
 
 		for(UserVO output : datas){
-			System.out.println(output);
-//			System.out.println(output.toString());
+//			System.out.println(output);
+			System.out.println(output.toString());
 		}
 
 	}
