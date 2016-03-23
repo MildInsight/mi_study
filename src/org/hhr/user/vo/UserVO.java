@@ -38,4 +38,8 @@ public class UserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String toString(){
+		
+		return  mynum+","+name+","+sex+","+","+age+","+email;
+	}
 }
