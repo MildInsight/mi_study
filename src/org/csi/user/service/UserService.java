@@ -1,8 +1,8 @@
-package org.hhr.user.service;
+package org.csi.user.service;
 
 import java.util.List;
 
-import org.hhr.user.vo.UserVO;
+import org.csi.user.vo.UserVO;
 
 public interface UserService {
 	

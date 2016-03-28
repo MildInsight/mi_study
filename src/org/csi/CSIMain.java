@@ -1,8 +1,8 @@
-package org.hhr;
+package org.csi;
 
-import org.hhr.user.web.UserController;
+import org.csi.user.web.UserController;
 
-public class HHRMain {
+public class CSIMain {
 	public static void main(String...args) {
 		UserController user = new UserController();
 		System.out.println(" master update ");

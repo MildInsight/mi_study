@@ -1,6 +1,6 @@
-package org.hhr.user.web;
+package org.csi.user.web;
 
-import org.hhr.user.service.UserService;
+import org.csi.user.service.UserService;
 
 public class UserController {
 	

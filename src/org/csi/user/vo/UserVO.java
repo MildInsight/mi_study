@@ -1,4 +1,4 @@
-package org.hhr.user.vo;
+package org.csi.user.vo;
 
 public class UserVO {
 	
