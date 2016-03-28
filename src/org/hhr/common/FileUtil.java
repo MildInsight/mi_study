@@ -15,7 +15,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.hhr.user.dao.UserDAO;
+import org.hhr.user.vo.UserVO;
+
 public class FileUtil {
+	
+	public static List<Map<String,String>> modifyTxt(){
+		
+		
+		
+		
+		return null;
+	}
 	public static List<Map<String,String>> csvRead(String filePath) throws FileNotFoundException{
 		
 		//csv 파일을 읽기위한 클레스 호출
@@ -74,6 +85,29 @@ public class FileUtil {
 		csvBean.setEmail("KKK@email.com");
 		
 		return data;
+	}
+	
+	public boolean writeCsv(String filePath,String txt) {
+		try{
+			//파일객체 생성
+			File file = new File(filePath);
+			 BufferedWriter fw = new BufferedWriter(new FileWriter(file, true));
+			/* List<CsvBean> data = getData();*/
+			/* for(CsvBean csvBean : data){
+				 fw.write(csvBean.csvString());
+			 }*/
+			 
+			fw.write(txt);
+			fw.flush();
+			
+			fw.close();
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	
+		
+		return true;
 	}
 	public void writeCSV()throws IOException{
 	String name;
@@ -176,94 +210,51 @@ public class FileUtil {
 			
 		}catch(IOException e){
 			e.printStackTrace();
+ 	
 		}
-	
-		
 	}
-	public void selectData() throws IOException {
+	public List<UserVO> selectData(UserVO vo) throws IOException {
 		
-		String selectData="";
-		FileUtil fileUtil = new FileUtil();
-		Scanner scan = new Scanner(System.in);
+
+		FileUtil fileUtil = new FileUtil(); 
+		UserDAO userDAO= new UserDAO();
+
 		boolean check=true ;
-		System.out.println("이름을 입력하세요");
-		selectData=scan.nextLine();
+		List<UserVO> result= new ArrayList<UserVO>();
 		try{
 			 List<Map<String,String>> list = fileUtil.csvRead("C:/hhr/data.csv");
-			 
+			
 			
 			 for(int i=0;i<list.size();i++){
-				//Map<String,String> map = list.get(i);
+
 				
-				if(selectData.equals(list.get(i).get("name"))){
+				if(vo.getName().equals(list.get(i).get("name"))){
 					check =false;
-					System.out.println("결과입니다.");
-					System.out.println(list.get(i).get("name")+","+list.get(i).get("sex")+","+list.get(i).get("age")+","+list.get(i).get("email"));
 					
+					vo.setMynum(Integer.parseInt(list.get(i).get("mynum")));
+					vo.setName(list.get(i).get("name"));
+					vo.setSex(list.get(i).get("sex").charAt(0));
+					vo.setAge(Integer.parseInt(list.get(i).get("age")));
+					vo.setEmail(list.get(i).get("email"));
+					result.add(vo);
 					
 				}
 				
 				
 			 }
+			 
 			if(check==true){
-				System.out.println("검색결과가 없습니다.");
+				System.out.println("검색결과가 없습니다");
+				
 			}
 			 
 		}
 		catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
-		//return selectData;
+		return result ;
 		
 	}
 
-  public static void main(String [] args) throws IOException{
-	  System.out.println("입력하세요");
-	  System.out.println("1=입력,2=읽기,3=이름 검색하기,4=종료");
-	  
-	  String option;
-	  FileUtil fileUtil = new FileUtil();
-	  //값 출력 테스트
-	
-	  Scanner scan= new Scanner(System.in);
-	  option=scan.nextLine();
-	  if(option.equals("1")){
-		  System.out.println("입력되었습니다.");
-		  fileUtil.writeCSV();
-		  fileUtil.main(args);
-	  }else if(option.equals("2")){
-		  
-		  System.out.println("파일을 읽어옵니다.");
-		  try {
-				 List<Map<String,String>> list = fileUtil.csvRead("C:/hhr/data.csv");
-				 for(Map<String,String> map : list) {
-					 System.out.println(map);
-				 }
-			} catch (FileNotFoundException e) {
-				
-			e.printStackTrace();
-			}
-			 fileUtil.main(args);
-	  }else if(option.equals("4")){
-		  System.out.println("프로그램 종료");
-	  }else if(option.equals("3")){
-		  System.out.println("검색하기");
-		  fileUtil.selectData();
-		  fileUtil.main(args);
-			 
-			  
-		  
-	  }
-	  else{
-		  System.out.println("1~4을 입력하세요");
-		  fileUtil.main(args);
-	  }
-	  
-	  
-	
-
-	  
-
-  }
  
 }

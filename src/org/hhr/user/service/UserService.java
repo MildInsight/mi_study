@@ -1,6 +1,7 @@
 package org.hhr.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hhr.user.vo.UserVO;
 
@@ -17,5 +18,7 @@ public interface UserService {
 
 	// Exam1VO 삭제한다.
 	public boolean deleteUserVO(UserVO vo);
+	
+	public List<UserVO> searchData(UserVO vo);
 	
 }

@@ -1,6 +1,7 @@
 package org.hhr.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hhr.user.dao.UserDAO;
 import org.hhr.user.vo.UserVO;
@@ -15,10 +16,15 @@ public class UserServiceImpl implements UserService {
 //		return list;
 		return userDAO.getUserList();
 	};
+	
+	public List<UserVO> searchData(UserVO vo){
+		
+		return userDAO.searchData(vo);
+	} 
 
 	// Exam1VO 저장한다.
 	public boolean insertUserVO(UserVO vo){
-		
+		userDAO.insertUser(vo);
 		return true;
 	};
 	
